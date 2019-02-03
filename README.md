@@ -45,4 +45,4 @@ This package utilises [gitignore-globs](https://www.npmjs.com/package/gitignore-
 
 ## License
 
-MIT © John Blackbourn, [Sevenweb](https://sevenweb.com)
+MIT © [John Blackbourn](https://johnblackbourn.com)
