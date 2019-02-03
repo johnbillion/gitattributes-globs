@@ -3,11 +3,6 @@ var expect = require('chai').expect;
 
 var parse = require('../index');
 
-var path = __dirname + '/fixtures';
-var getFilepath = function(dir) {
-    return path + '/' + dir + '/.gitignore';
-};
-
 describe('Prepare', function() {
     it('should ignore blank lines', function() {
         var result = parse._prepare(['foo', '', 'bar']);
@@ -19,15 +14,6 @@ describe('Prepare', function() {
         var result = parse._prepare(['foo', '# Comment', 'bar']);
 
         expect(result).to.eql(result, ['foo', 'bar']);
-    });
-});
-
-describe('Negate', function() {
-    it('should negate', function() {
-        var globs = ['*', '!/foo', '/foo'];
-        var expected = ['!*', '/foo', '!/foo'];
-
-        expect(parse._negate(globs)).to.eql(expected);
     });
 });
 

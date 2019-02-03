@@ -1,12 +1,6 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
-
-// Checks whether a pattern is probably not a path e.g. a file.
-function isFile(pattern) {
-    return (pattern == '*' || pattern.indexOf('.') !== -1);
-}
 
 // Prepare removes blank lines and comments.
 function prepare(patterns) {
@@ -49,13 +43,6 @@ function map(patterns) {
     return patterns;
 }
 
-// Negate turns a glob into an excluding glob and vice-versa.
-function negate(globs) {
-    return globs.map(function(glob) {
-        return (glob.charAt(0) == '!') ? glob.substring(1) : '!' + glob;
-    });
-}
-
 // Parse a .gitignore file and return its glob patterns as an array.
 function parse(file, options) {
     var file = file || '.gitignore';
@@ -78,5 +65,3 @@ module.exports = parse;
 
 module.exports._map = map;
 module.exports._prepare = prepare;
-module.exports._negate = negate;
-module.exports._isFile = isFile;
