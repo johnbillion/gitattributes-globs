@@ -1,19 +1,21 @@
-# gitignore-globs
+# gitattributes-globs
 
-Parse a `.gitignore` file into an array of glob patterns.
+Parse the export-ignore entries in a `.gitattributes` file into an array of glob patterns.
+
+Makes use of [gitignore-globs](https://www.npmjs.com/package/gitignore-globs) by Bernhard Wanger.
 
 ## Usage
 
-.gitignore:
+.gitattributes:
 
-    node_modules
-    package.json
+    node_modules export-ignore
+    package.json export-ignore
 
 index.js:
 
-    var parse = require('gitignore-globs');
+    var parse = require('gitattributes-globs');
 
-    var globs = parse('.gitignore');
+    var globs = parse('.gitattributes');
 
     console.log(globs);
     // Result: ['node_modules', '**/node_modules/**', 'package.json']
@@ -22,7 +24,7 @@ index.js:
 
 ### parse([filepath<string>], [options<array>])
 
-* filepath (string; default: `process.cwd() + '.gitignore'`) - Path to your `.gitignore`.
+* filepath (string; default: `process.cwd() + '.gitattributes'`) - Path to your `.gitattributes`.
 * options (array) - Options see below.
 
 #### Options:
@@ -35,53 +37,12 @@ index.js:
 
 ## Rules
 
-* Git: http://git-scm.com/docs/gitignore#_pattern_format
-* Glob: https://github.com/isaacs/node-glob#glob-primer
-
-**Mappings:**
-
-| .gitignore | Description | Glob |
-|------------|-------------|------|
-| `#` | Comment | *ignore*
-| ` ` | Blank line | *ignore*
-| `/foo` | Ignore root (not sub) file and dir and its paths underneath. | `/foo`, `/foo/**`
-| `/foo/` | Ignore root (not sub) foo dir and its paths underneath. | `/foo/**`
-| `foo` | Ignore (root/sub) foo files and dirs and their paths underneath. | `foo`, `**/foo/**`
-| `foo/` | Ignore (root/sub) foo dirs and their paths underneath. | `**/foo/**`
-
-Other patterns already work as globs. For example:
-
-* `*.zip`: Ignore any zip file.
-* `.DS_Store`: Ignore all .DS_Store files.
-* `*~`: Ignore all files that end with a tilde.
-* `*.[oa]`: Ignore any files ending in ".o" or ".a", for example `archive.a` or `bar.o`.
-* `*`: Ignore all files.
+This package utilises [gitignore-globs](https://www.npmjs.com/package/gitignore-globs). Read that package's readme for information about glob pattern rules.
 
 ## Test
 
     npm test
 
-### Watch:
-
-    npm run watch-test
-
-or
-
-    nodemon --exec "mocha" test --exclude "node_modules"
-
-## Resources
-
-* .gitignore:
-    * http://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#Ignoring-Files
-    * https://help.github.com/articles/ignoring-files/
-    * http://git-scm.com/docs/gitignore#_pattern_format
-    * https://www.npmjs.com/package/glob#glob-primer
-* Others:
-    * https://github.com/EE/gitignore-to-glob
-    * https://github.com/jonschlinkert/parse-gitignore
-    * https://github.com/codemix/gitignore-parser
-    * https://github.com/jenseng/globby-js
-
 ## License
 
-MIT © Bernhard Wanger, [Sevenweb](https://sevenweb.com)
+MIT © John Blackbourn, [Sevenweb](https://sevenweb.com)
