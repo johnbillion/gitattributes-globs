@@ -1,6 +1,6 @@
 {
   "name": "gitattributes-globs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Parse a .gitattributes file and return its export-ignore entries as an array of glob patterns.",
   "main": "index.js",
   "directories": {
